@@ -1,6 +1,8 @@
 package com.example.utilsmod.keybinds;
 
 import com.example.utilsmod.UtilsMod;
+import com.example.utilsmod.waypoints.WayPointsScreen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
@@ -15,7 +17,7 @@ public class input {
         public static void onKeyPressed(InputEvent.Key event){
             if(keys.waypoints.consumeClick()){
                 Component line = Component.literal("COORDS:");
-
+                Minecraft.getInstance().setScreen(new WayPointsScreen(Component.literal("WayPointScreen")));
 
             }
         }
