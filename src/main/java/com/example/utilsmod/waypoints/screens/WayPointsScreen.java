@@ -1,6 +1,7 @@
 package com.example.utilsmod.waypoints.screens;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -14,10 +15,11 @@ public class WayPointsScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"),WayPointsScreen::OnAddPress).bounds(this.width/2 - 50,this.height/2 - 50,50,50).build());
+        addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"),WayPointsScreen::OnAddPress).bounds(this.width/2 - 50,this.height/2 - 9,100,18).build());
     }
 
     private static void OnAddPress(Button button) {
+        Minecraft.getInstance().setScreen(new AddButtonScreen(Component.literal("ADD WAYPOINT")));
     }
 
     @Override
