@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WayPointsHandler {
-    public ArrayList<ArrayList<Integer>> coords = new ArrayList<ArrayList<Integer>>();
-    public List<String> titles = new ArrayList<>();
+    protected static ArrayList<ArrayList<Integer>> coords = new ArrayList<ArrayList<Integer>>();
+    protected static List<String> titles = new ArrayList<>();
 
-    public void Add(ArrayList<Integer> coord,String title){
+    public static void Add(ArrayList<Integer> coord,String title){
         coords.add(coord);
         titles.add(title);
     }
