@@ -28,6 +28,7 @@ public class AddButtonScreen extends Screen {
     public Yeditbox yE = new Yeditbox(Minecraft.getInstance().font,xconst,yconst ,40,15,Component.literal("YBox"));
     public Zeditbox zE = new Zeditbox(Minecraft.getInstance().font,xconst + xadd,yconst,40,15,Component.literal("ZBox"));
 
+    public Texteditbox textE = new Texteditbox(Minecraft.getInstance().font,xconst + (xadd*2),yconst,40,15,Component.literal("TextBox"));
 
     @Override
     protected void init() {
@@ -35,17 +36,20 @@ public class AddButtonScreen extends Screen {
         addRenderableWidget(xE);
         addRenderableWidget(yE);
         addRenderableWidget(zE);
+        addRenderableWidget(textE);
 
         addRenderableWidget(new Button.Builder(Component.translatable("Confirm WayPoint"), button -> OnConfirmPress(button)).bounds(this.width/2 - 75,this.height/2 - 9,150,18).build());;
     }
 
     private void OnConfirmPress(Button button){
         int x,y,z;
+        String text;
         ArrayList<Integer> coordsorter = new ArrayList<>();
         try{
             x = Integer.parseInt(xE.getValue());
             y = Integer.parseInt(yE.getValue());
             z = Integer.parseInt(zE.getValue());
+            text = textE.getValue();
             coordsorter.add(x);
             coordsorter.add(y);
             coordsorter.add(z);
@@ -102,6 +106,18 @@ public class AddButtonScreen extends Screen {
 
 
         public Zeditbox(Font p_94114_, int p_94115_, int p_94116_, int p_94117_, int p_94118_, Component p_94119_) {
+            super(p_94114_, p_94115_, p_94116_, p_94117_, p_94118_, p_94119_);
+        }
+        @Override
+        public String getValue() {
+            return super.getValue();
+        }
+    }
+
+    public static class Texteditbox extends EditBox{
+
+
+        public Texteditbox(Font p_94114_, int p_94115_, int p_94116_, int p_94117_, int p_94118_, Component p_94119_) {
             super(p_94114_, p_94115_, p_94116_, p_94117_, p_94118_, p_94119_);
         }
         @Override
