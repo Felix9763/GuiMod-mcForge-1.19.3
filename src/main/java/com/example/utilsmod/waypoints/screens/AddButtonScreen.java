@@ -19,10 +19,14 @@ public class AddButtonScreen extends Screen {
     protected AddButtonScreen(Component p_96550_) {
         super(p_96550_);
     }
+    final int  xconst = 100;
+    final int xadd = 60;
+    final int yconst = 75;
+    final int xtextconst = 10;
 
-    public Xeditbox xE = new Xeditbox(Minecraft.getInstance().font,100, 100,20,20,Component.literal("XBox"));
-    public Yeditbox yE = new Yeditbox(Minecraft.getInstance().font,this.width/2,this.height/2 - 10,20,20,Component.literal("YBox"));
-    public Zeditbox zE = new Zeditbox(Minecraft.getInstance().font,this.width/2 + 10,this.height/2 - 10,20,20,Component.literal("ZBox"));
+    public Xeditbox xE = new Xeditbox(Minecraft.getInstance().font,xconst - xadd, yconst,40,15,Component.literal("XBox"));
+    public Yeditbox yE = new Yeditbox(Minecraft.getInstance().font,xconst,yconst ,40,15,Component.literal("YBox"));
+    public Zeditbox zE = new Zeditbox(Minecraft.getInstance().font,xconst + xadd,yconst,40,15,Component.literal("ZBox"));
 
 
     @Override
@@ -60,7 +64,11 @@ public class AddButtonScreen extends Screen {
     @Override
     public void render(PoseStack p_96562_, int p_96563_, int p_96564_, float p_96565_) {
         super.render(p_96562_, p_96563_, p_96564_, p_96565_);
+        Minecraft.getInstance().font.drawShadow(p_96562_,"X:",xconst - xadd - xtextconst, yconst,1731133);
 
+        Minecraft.getInstance().font.drawShadow(p_96562_,"Y:",xconst - xtextconst, yconst,1731133);
+
+        Minecraft.getInstance().font.drawShadow(p_96562_,"Z:",xconst + xadd - xtextconst, yconst,1731133);
     }
 
 

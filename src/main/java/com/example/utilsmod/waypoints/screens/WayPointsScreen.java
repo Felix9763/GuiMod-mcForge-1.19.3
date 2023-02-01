@@ -25,7 +25,6 @@ public class WayPointsScreen extends Screen {
     @Override
     public void render(PoseStack p_96562_, int p_96563_, int p_96564_, float p_96565_) {
         super.render(p_96562_, p_96563_, p_96564_, p_96565_);
-        renderBackground(p_96562_);
 
     }
 }
