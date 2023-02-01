@@ -20,7 +20,7 @@ public class AddButtonScreen extends Screen {
         super(p_96550_);
     }
 
-    public Xeditbox xE = new Xeditbox(Minecraft.getInstance().font,this.width/2 - 10,this.height/2 - 10,20,20,Component.literal("XBox"));
+    public Xeditbox xE = new Xeditbox(Minecraft.getInstance().font,100, 100,20,20,Component.literal("XBox"));
     public Yeditbox yE = new Yeditbox(Minecraft.getInstance().font,this.width/2,this.height/2 - 10,20,20,Component.literal("YBox"));
     public Zeditbox zE = new Zeditbox(Minecraft.getInstance().font,this.width/2 + 10,this.height/2 - 10,20,20,Component.literal("ZBox"));
 
@@ -32,17 +32,26 @@ public class AddButtonScreen extends Screen {
         addRenderableWidget(yE);
         addRenderableWidget(zE);
 
-        addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"), button -> OnConfirmPress(button)).bounds(this.width/2 - 50,this.height/2 - 9,100,18).build());;
+        addRenderableWidget(new Button.Builder(Component.translatable("Confirm WayPoint"), button -> OnConfirmPress(button)).bounds(this.width/2 - 75,this.height/2 - 9,150,18).build());;
     }
 
     private void OnConfirmPress(Button button){
+        int x,y,z;
         ArrayList<Integer> coordsorter = new ArrayList<>();
-        int x = Integer.parseInt(xE.getValue());
-        int y = Integer.parseInt(yE.getValue());
-        int z = Integer.parseInt(zE.getValue());
-        coordsorter.add(x);
-        coordsorter.add(y);
-        coordsorter.add(z);
+        try{
+            x = Integer.parseInt(xE.getValue());
+            y = Integer.parseInt(yE.getValue());
+            z = Integer.parseInt(zE.getValue());
+            coordsorter.add(x);
+            coordsorter.add(y);
+            coordsorter.add(z);
+        }catch(NumberFormatException e){
+
+            Minecraft.getInstance().player.displayClientMessage(Component.literal("Please Input A Number Not Alphabets"),true);
+        }
+
+
+
 
         Minecraft.getInstance().player.displayClientMessage(Component.literal(xE.getValue()),false);
 
