@@ -11,7 +11,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static com.example.utilsmod.waypoints.WayPointsHandler.Add;
 
 public class AddButtonScreen extends Screen {
 
@@ -38,12 +41,17 @@ public class AddButtonScreen extends Screen {
         addRenderableWidget(zE);
         addRenderableWidget(textE);
 
-        addRenderableWidget(new Button.Builder(Component.translatable("Confirm WayPoint"), button -> OnConfirmPress(button)).bounds(this.width/2 - 75,this.height/2 - 9,150,18).build());;
+        addRenderableWidget(new Button.Builder(Component.translatable("Confirm WayPoint"), button -> {
+            try {
+                OnConfirmPress(button);
+            } catch (IOException e) {}
+        }).bounds(this.width/2 - 75,this.height/2 - 9,150,18).build());;
     }
 
-    private void OnConfirmPress(Button button){
+    private void OnConfirmPress(Button button) throws IOException {
         int x,y,z;
-        String text;
+        String text = "";
+        System.out.println("runs button");
         ArrayList<Integer> coordsorter = new ArrayList<>();
         try{
             x = Integer.parseInt(xE.getValue());
@@ -53,13 +61,11 @@ public class AddButtonScreen extends Screen {
             coordsorter.add(x);
             coordsorter.add(y);
             coordsorter.add(z);
+            Add(coordsorter,text);
         }catch(NumberFormatException e){
 
             Minecraft.getInstance().player.displayClientMessage(Component.literal("Please Input A Number Not Alphabets"),true);
         }
-
-
-
 
         Minecraft.getInstance().player.displayClientMessage(Component.literal(xE.getValue()),false);
 

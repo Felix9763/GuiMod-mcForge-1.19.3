@@ -1,10 +1,15 @@
 package com.example.utilsmod.waypoints.screens;
 
+import com.example.utilsmod.waypoints.WayPointsHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+
+import java.io.FileNotFoundException;
+
+import static com.example.utilsmod.waypoints.WayPointsHandler.ReadFile;
 
 public class WayPointsScreen extends Screen {
 
@@ -15,6 +20,7 @@ public class WayPointsScreen extends Screen {
     @Override
     protected void init() {
         super.init();
+        try {ReadFile();} catch (FileNotFoundException e) {}
         addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"),WayPointsScreen::OnAddPress).bounds(this.width/2 - 50,this.height/2 - 9,100,18).build());
     }
 
