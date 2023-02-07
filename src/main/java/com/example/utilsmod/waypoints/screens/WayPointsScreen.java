@@ -8,8 +8,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import static com.example.utilsmod.waypoints.WayPointsHandler.ReadFile;
+import static com.example.utilsmod.waypoints.WayPointsHandler.*;
 
 public class WayPointsScreen extends Screen {
 
@@ -21,7 +22,13 @@ public class WayPointsScreen extends Screen {
     protected void init() {
         super.init();
         try {ReadFile();} catch (FileNotFoundException e) {}
+
         addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"),WayPointsScreen::OnAddPress).bounds(this.width/2 - 50,this.height/2 - 9,100,18).build());
+    }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
     }
 
     private static void OnAddPress(Button button) {

@@ -80,9 +80,15 @@ public class UtilsMod
         int plry = (int)Minecraft.getInstance().player.getY();
         int plrz = (int)Minecraft.getInstance().player.getZ();
         String plrdir = Minecraft.getInstance().player.getDirection().name();
-        Minecraft.getInstance().font.drawShadow(stack,String.format("%s,%s,%s",plrx,plry,plrz),0,0,1731133); //mc.font.drawShadow(stack,"asd",1,1,1);
-        Minecraft.getInstance().font.drawShadow(stack,plrdir,0,10,1731133);
+        Minecraft.getInstance().font.drawShadow(stack,String.format("%s,%s,%s",plrx,plry,plrz),0,2,1731133); //mc.font.drawShadow(stack,"asd",1,1,1);
+        Minecraft.getInstance().font.drawShadow(stack,plrdir,0,12,1731133);
+
     }
+
+//    @SubscribeEvent
+//    public void paused(){
+//
+//    }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
