@@ -3,6 +3,9 @@ package com.example.utilsmod.waypoints;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import net.minecraft.client.Minecraft;
+import net.minecraft.data.Main;
+import net.minecraft.network.chat.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class WayPointsHandler {
     protected static ArrayList<ArrayList<Integer>> coords = new ArrayList<ArrayList<Integer>>();
@@ -51,6 +55,7 @@ public class WayPointsHandler {
         writer.write(json);
         writer.close();
     }
+
     public static void ReadFile() throws FileNotFoundException {
         File file = new File("C:\\Users\\psrek\\Desktop\\coords.json");
         Scanner sc = new Scanner(file);
@@ -63,9 +68,21 @@ public class WayPointsHandler {
 
         HashMap<String,ArrayList<Integer>> map = gs.fromJson(info, maptype);
         Mainmap = map;
+    }
 
 
-
-
+    public static void display(){
+        String str = Mainmap.entrySet().stream().map(e -> e.getKey() + ":" + e.getValue()).collect(Collectors.joining("\n"));
+        Minecraft.getInstance().player.displayClientMessage(Component.literal(str),false);
+    }
+    public static void RemoveElement(String element){
+        for(int s = 0;s< Mainmap.size();s++){
+            if(Mainmap.containsKey(s)){
+                Mainmap.remove(s);
+                Minecraft.getInstance().player.displayClientMessage(Component.literal("Removed " + s),true);
+            }else{
+                Minecraft.getInstance().player.displayClientMessage(Component.literal(s + " Does Not Exist"),true);
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ public class WayPointsScreen extends Screen {
     protected void init() {
         super.init();
         try {ReadFile();} catch (FileNotFoundException e) {}
-
+        display();
         addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"),WayPointsScreen::OnAddPress).bounds(this.width/2 - 50,this.height/2 - 9,100,18).build());
     }
 
