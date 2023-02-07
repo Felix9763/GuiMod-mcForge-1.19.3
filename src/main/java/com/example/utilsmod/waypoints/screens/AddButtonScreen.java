@@ -67,7 +67,6 @@ public class AddButtonScreen extends Screen {
             Minecraft.getInstance().player.displayClientMessage(Component.literal("Please Input A Number Not Alphabets"),true);
         }
 
-        Minecraft.getInstance().player.displayClientMessage(Component.literal(xE.getValue()),false);
 
     }
 

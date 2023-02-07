@@ -23,7 +23,8 @@ public class WayPointsScreen extends Screen {
         super.init();
         try {ReadFile();} catch (FileNotFoundException e) {}
         display();
-        addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"),WayPointsScreen::OnAddPress).bounds(this.width/2 - 50,this.height/2 - 9,100,18).build());
+        addRenderableWidget(new Button.Builder(Component.translatable("Add WayPoint"),WayPointsScreen::OnAddPress).bounds(this.width/2 - 70,this.height/2 - 9,100,18).build());
+        addRenderableWidget(new Button.Builder(Component.translatable("Remove WayPoint"),WayPointsScreen::OnRemovePress).bounds(this.width/2 - 30,this.height/2 - 9,100,18).build());
     }
 
     @Override
@@ -32,7 +33,11 @@ public class WayPointsScreen extends Screen {
     }
 
     private static void OnAddPress(Button button) {
-        Minecraft.getInstance().setScreen(new AddButtonScreen(Component.literal("ADD WAYPOINT")));
+        Minecraft.getInstance().setScreen(new AddButtonScreen(Component.literal("Add Waypoint")));
+    }
+
+    private static void OnRemovePress(Button button) {
+        Minecraft.getInstance().setScreen(new RemoveButtonScreen(Component.literal("Remove Waypoint")));
     }
 
     @Override
